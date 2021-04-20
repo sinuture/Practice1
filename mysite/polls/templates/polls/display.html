@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        *{
+            padding: 0%;
+            margin: 0%;
+        }
+        
+        main{
+            text-align: center;
+            height: 400px;
+        }
+        
+        .list_member{
+            margin: 0 auto;
+            height: 50%;
+            width: 80%;
+            overflow-y: auto;
+        }
+        
+        .member{
+            text-align: left;
+            height: 30%;
+            width: 100%;
+            display: flex;
+        }
+        
+        .member_name{
+            width: 20%;
+        }
+        
+        .member_speech{
+            width: 80%;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        
+        .target{
+            width: 64%;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .long{
+            width: 1000px;
+        }
+        
+        .member_speech_list_element{
+            position: relative;
+            width: 1000px;
+            height: 100%;
+        }
+        
+        .member_speech_element{
+            border: 1px solid #000;
+            display: inline-block;
+            height: 90%;
+        }
+        
+        .member_speech::-webkit-scrollbar {
+            display:none;
+        }
+
+        {% for member in list_member %}
+        {% for member_speech_element in member.speech_info %}
+        .{{member_speech_element.class_name}}{
+            position : absolute;
+            left : {{member_speech_element.position}}px;
+            width : {{member_speech_element.width}}px;
+        }
+        {% endfor %}
+        {% endfor %}
+
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <header>
+
+    </header>
+    <main>
+        <div class="list_member">
+            {% for member in list_member %}
+                <div class="member">
+                    <div class = "member_name {{ member.class_name }}">{{ member.name }}</div>
+                    <div class="member_speech">
+                        <div class="member_speech_list_element">
+                            {% for member_speech_element in member.speech_info %}
+                            <div class = "member_speech_element {{ member_speech_element.class_name }}">
+                                {{ member_speech_element.speech }}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="target">
+            <div class="long">long sentence</div>
+        </div>
+    </main>
+    <script>
+
+        let member_speech = document.getElementsByClassName('member_speech');
+        let target = document.getElementsByClassName('target');
+
+        SK = (to) =>{
+            for (let i = 0; i < member_speech.length; i++) {
+                member_speech[i].scrollLeft = to;
+            }
+        }
+        target[0].onscroll = () => {
+             for (let i = 0; i < member_speech.length; i++) {
+                 member_speech[i].scrollLeft = target[0].scrollLeft;
+             }
+        }
+    </script>
+</body>
+</html>

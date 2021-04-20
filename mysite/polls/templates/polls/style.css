@@ -1,0 +1,53 @@
+*{
+    padding: 0%;
+    margin: 0%;
+}
+
+main{
+    text-align: center;
+    height: 400px;
+}
+
+.list_member{
+    margin: 0 auto;
+    height: 50%;
+    width: 80%;
+    overflow-y: auto;
+}
+
+.member{
+    text-align: left;
+    height: 30%;
+    width: 100%;
+    display: flex;
+}
+
+.member_name{
+    width: 20%;
+}
+
+.member_speech{
+    width: 80%;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.target{
+    width: 80%;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.member_speech_list_element{
+    width: 1000px;
+    height: 100%;
+}
+
+.member_speech_element{
+    border: 1px solid #000;
+    display: inline-block;
+}
+
+.member_speech::-webkit-scrollbar {
+    display:none;
+}
